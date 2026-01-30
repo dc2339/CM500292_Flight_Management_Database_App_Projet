@@ -61,7 +61,7 @@ def init_database():
                 
     CREATE TABLE IF NOT EXISTS FlightStatus(
                     
-                FlightStatusId INTEGER PRIMARY KEY, 
+                FlightStatusId INTEGER PRIMARY KEY AUTOINCREMENT, 
                 FlightStatusName VARCHAR(50) NOT NULL
                     
                 );
