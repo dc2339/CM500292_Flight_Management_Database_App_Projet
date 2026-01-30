@@ -56,7 +56,7 @@ def init_database():
 
     CREATE TABLE IF NOT EXISTS Destination(
                  
-                DesrinationId INTEGER PRIMARY KEY AUTOINCREMENT,
+                DestinationId INTEGER PRIMARY KEY AUTOINCREMENT,
                 City VARCHAR(50) NOT NULL,
                 Country VARCHAR(50) NOT NULL,
                 AirportCode VARCHAR(10) UNIQUE NOT NULL
@@ -80,27 +80,28 @@ def init_database():
 
     cur.execute("""
     CREATE TABLE IF NOT EXISTS Flight(
-        
-        FlightID INTEGER PRIMARY KEY AUTOINCREMENT,
-        FlightNumber VARCHAR(10) NOT NULL,
-        FlightDate DATE NOT NULL,
+    
+    FlightID INTEGER PRIMARY KEY AUTOINCREMENT,
+    FlightNumber VARCHAR(10) NOT NULL,
+    FlightDate DATE NOT NULL,
 
-        DepartureDestinationId INTEGER NOT NULL,
-        ArrivalDestinationId INTEGER NOT NULL,
+    DepartureDestinationId INTEGER NOT NULL,
+    ArrivalDestinationId INTEGER NOT NULL,
 
-        ScheduledDepartureTime DATETIME NOT NULL,
-        ScheduledArrivalTime DATETIME NOT NULL,
-        ActualDepartureTime DATETIME,
-        ActualArrivalTime DATETIME,
-        FlightStatusId IINTEGER NOT NULL,
+    ScheduledDepartureTime DATETIME NOT NULL,
+    ScheduledArrivalTime DATETIME NOT NULL,
+    ActualDepartureTime DATETIME,
+    ActualArrivalTime DATETIME,
+    FlightStatusId INTEGER NOT NULL,
 
-        FOREIGN KEY(DepartureDestinationId)REFERENCES Destination(DestinationId) ON DELETE RESTRICT ON UPDATE CASCADE,
-        FOREIGN KEY(ArrivalDestinationId) REFERENCES Destination(DestinationId) ON DELETE RESTRICT ON UPDATE CASCADE,
-        FOREIGN KEY(FlightStatusId) REFERENCES FlightStatus(FlightStatusId) ON DELETE RESTRICT ON UPDATE CASCADE
+    FOREIGN KEY(DepartureDestinationId) REFERENCES Destination(DestinationId) ON DELETE RESTRICT ON UPDATE CASCADE,
+    FOREIGN KEY(ArrivalDestinationId) REFERENCES Destination(DestinationId) ON DELETE RESTRICT ON UPDATE CASCADE,
+    FOREIGN KEY(FlightStatusId) REFERENCES FlightStatus(FlightStatusId) ON DELETE RESTRICT ON UPDATE CASCADE,
 
-        UNIQUE(FlightNumber, FlightDate)
+    UNIQUE(FlightNumber, FlightDate)
     );
     """)
+
 
     # ---------------- TABLE FLIGHT_PILOT --------------------------
 
