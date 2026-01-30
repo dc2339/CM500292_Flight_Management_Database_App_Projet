@@ -6,7 +6,14 @@ def init_database():
     conn = get_connection()
     cur = conn.cursor()
 
-    #Enabling the foreing key constrains for SQLite library 
+    #cur.execute("PRAGMA foreign_keys = OFF;")
+
+    #cur.execute("DROP TABLE IF EXISTS FlightPilot;")
+    #cur.execute("DROP TABLE IF EXISTS Pilot;")
+
+    #cur.execute("PRAGMA foreign_keys = ON;")
+
+    #Enabling the foreing key constrains for SQLite library  
     cur.execute("PRAGMA foreign_keys = ON;")
 
     # ---------------- TABLE ROLE --------------------------
@@ -34,6 +41,8 @@ def init_database():
                 LicenseNumber VARCHAR(10) UNIQUE NOT NULL,
                 ExperienceYears INTEGER,
                 RoleId INTEGER NOT NULL, 
+                Email VARCHAR(50),
+                TelephoneNumber VARCHAR(10),
                 
                 FOREIGN KEY(RoleId) REFERENCES Role(RoleId)
 
