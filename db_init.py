@@ -6,7 +6,7 @@ def init_database():
     conn = get_connection()
     cur = conn.cursor()
 
-    #Enabling the foreing key constrains for SQLite library
+    #Enabling the foreing key constrains for SQLite library 
     cur.execute("PRAGMA foreign_keys = ON;")
 
     # ---------------- TABLE ROLE --------------------------
@@ -55,6 +55,18 @@ def init_database():
                  );
     """)
 
+    # ---------------- TABLE FLIGHT STATUS --------------------------
+
+    cur.execute("""
+                
+    CREATE TABLE IF NOT EXISTS FlightStatus(
+                    
+                FlightStatusId INTEGER PRIMARY KEY, 
+                FlightStatusName VARCHAR(50) NOT NULL
+                    
+                );
+    """)
+
     # ---------------- FLIGHT ----------------
 
     cur.execute("""
@@ -71,9 +83,11 @@ def init_database():
         ScheduledArrivalTime DATETIME NOT NULL,
         ActualDepartureTime DATETIME,
         ActualArrivalTime DATETIME,
+        FlightStatusId IINTEGER NOT NULL,
 
         FOREIGN KEY(DepartureDestinationId)REFERENCES Destination(DestinationId) ON DELETE RESTRICT ON UPDATE CASCADE,
         FOREIGN KEY(ArrivalDestinationId) REFERENCES Destination(DestinationId) ON DELETE RESTRICT ON UPDATE CASCADE,
+        FOREIGN KEY(FlightStatusId) REFERENCES FlightStatus(FlightStatusId) ON DELETE RESTRICT ON UPDATE CASCADE
 
         UNIQUE(FlightNumber, FlightDate)
     );
