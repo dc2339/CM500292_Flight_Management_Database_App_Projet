@@ -112,3 +112,44 @@ def init_database():
     #Commit eventual change and close the connection to the DB
     conn.commit()
     conn.close()
+
+
+def insert_lookup_tables():
+
+    conn = get_connection()
+    cur = conn.cursor()
+
+
+    # ---------------- INSERT ROLE VALUE --------------------------
+
+    cur.execute("SELECT COUNT(*) FROM Role")
+    role_counter = cur.fetchone()[0]
+
+    if(role_counter == 0):
+
+        cur.executemany("""
+            INSERT INTO Role (RoleName) VALUES (?)                 
+        """, 
+        [("Capitan",), ("Officer",), ("Learner",)]
+        )
+        
+        print("Roles inserted")
+        
+    # ---------------- INSERT FLIGHT STATUS VALUE --------------------------
+
+    cur.execute("SELECT COUNT(*) FROM FlightStatus")
+    status_counter = cur.fetchone()[0]
+
+    if(status_counter == 0):
+
+        cur.executemany("""
+                        
+            INSERT INTO FlightStatus (FlightStatusName) VALUES (?) 
+        """,
+        [("Scheduled",), ("Boarding",), ("Departed",),("Delayed",), ("Cancelled",), ("Landed",)]                
+        )
+
+        print("Flight status inserted")
+
+    conn.commit()
+    conn.close()
