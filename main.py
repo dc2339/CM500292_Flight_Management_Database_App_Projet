@@ -1,6 +1,7 @@
 from db_init import init_database, insert_lookup_tables
 from controller.pilot_controller import add_pilot, view_all_pilots
 from controller.destination_controller import * 
+from controller.flight_controller import *
 from insert_data import insert_data, reset_database
 
 def destination_menu():
@@ -46,13 +47,18 @@ def main():
 
     while True: 
         print("\n MAIN MENU")
-        print("Press 1 to pilote management")
+        print("Press 1 to add a flight")
         print("Press 6 to View/Update Destination Information")
+        print("Press 10 for the pilot managemnt")
         print("Press 7 to exit")
 
         choice = input("Select an option: ")
 
         if(choice == "1"):
+            print("\n Add flight ")
+            add_flight()
+
+        if(choice == "10"):
            print("\n PILOT MANAGEMENT")
            print("1. Add new Pilot")
            print("2. View all Pilots")
