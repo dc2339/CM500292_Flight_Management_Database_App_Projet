@@ -38,6 +38,45 @@ def destination_menu():
             print("Invalid option, please try again.")
 
 
+def flight_view_menu():
+    while True:
+        print("\n FLIGHT VISUALIZATION")
+        print("1. View flights by Status")
+        print("2. View flights by Departure Destination")
+        print("3. View flights by Arrival Destination")
+        print("4. View flights by Flight Date")
+        print("5. View flights by Flight Number")
+        print("6. View all flights")
+        print("7. Back to Main Menu")
+
+        choice = input("Select an option: ")
+
+        if choice == "1":
+            view_flights_by_status()
+
+        elif choice == "2":
+            view_flights_by_departure()
+
+        elif choice == "3":
+            view_flights_by_arrival()
+
+        elif choice == "4":
+            view_flights_by_date()
+
+        elif choice == "5":
+            view_flights_by_number()
+
+        elif choice == "6":
+            view_all_flight()
+
+        elif choice == "7":
+            break
+
+        else:
+            print("Invalid option, please try again.")
+
+
+
 def main():
 
     reset_database()
@@ -47,7 +86,8 @@ def main():
 
     while True: 
         print("\n MAIN MENU")
-        print("Press 1 to add a flight")
+        print("Press 1 to add a new flight")
+        print("Press 2 to view Flight by criteria")
         print("Press 6 to View/Update Destination Information")
         print("Press 10 for the pilot managemnt")
         print("Press 7 to exit")
@@ -55,8 +95,11 @@ def main():
         choice = input("Select an option: ")
 
         if(choice == "1"):
-            print("\n Add flight ")
+            print("\nAdd new flight ")
             add_flight()
+
+        if(choice == "2"):
+           flight_view_menu()
 
         if(choice == "10"):
            print("\n PILOT MANAGEMENT")
