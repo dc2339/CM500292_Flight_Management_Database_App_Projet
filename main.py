@@ -4,6 +4,7 @@ from controller.destination_controller import *
 from controller.flight_controller import *
 from insert_data import insert_data, reset_database
 from controller.flight_pilot_controller import assign_pilot
+from controller.pilot_schedule_controller import show_pilot_schedule
 
 def destination_menu():
     while True:
@@ -138,45 +139,48 @@ def main():
         print("Press 2 to view Flight by criteria")
         print("Press 3 to modify the schedule for a flight")
         print("Press 4 to assign Pilot to Flight")
+        print("Press 5 to View Pilot Schedule")
         print("Press 6 to View/Update Destination Information")
         print("Press 10 for the pilot managemnt")
         print("Press 7 to exit")
 
         choice = input("Select an option: ")
 
-        if(choice == "1"):
-            print("\nAdd new flight ")
+        if choice == "1":
             add_flight()
 
-        if(choice == "2"):
-           flight_view_menu()
+        elif choice == "2":
+            flight_view_menu()
 
-        if(choice =="3"):
+        elif choice == "3":
             flight_schedule_menu()
 
-        if(choice == "4"):
+        elif choice == "4":
             flight_assignment_menu()
 
-        if(choice == "10"):
-           print("\n PILOT MANAGEMENT")
-           print("1. Add new Pilot")
-           print("2. View all Pilots")
-           sub_choice = input("Select an option: ")
-           
-           if (sub_choice) == "1":
+        elif choice == "5":
+            show_pilot_schedule()
+
+        elif choice == "10":
+            print("\n PILOT MANAGEMENT")
+            print("1. Add new Pilot")
+            print("2. View all Pilots")
+            sub_choice = input("Select an option: ")
+
+            if sub_choice == "1":
                 add_pilot()
-           elif (sub_choice == "2"):
+            elif sub_choice == "2":
                 view_all_pilots()
 
-        elif(choice == "6"):
+        elif choice == "6":
             destination_menu()
 
-        elif(choice == "7"):
-            print("Exting the application ...")
+        elif choice == "7":
+            print("Exiting the application ...")
             break
-        
+
         else:
-            print("Invalid option, please try agin.")
+            print("Invalid option, please try again.")
 
 
 if __name__ == "__main__":
