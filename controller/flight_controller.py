@@ -1,5 +1,18 @@
 from model.flight import Flight
-from repository.flight_repository import *
+from repository.flight_repository import (
+
+    insert_flight,
+    view_flight_by_status_id,
+    view_flight_by_departure_id,
+    view_flight_by_arrival_id,
+    view_flight_by_flight_date,
+    view_flight_by_fligth_number,
+    view_all_flights,
+    update_scheduled_departure_time,
+    update_scheduled_arrival_time,
+    update_flight_status,
+    update_schedule
+)
 
 
 def add_flight():
@@ -78,3 +91,34 @@ def view_all_flight():
     print("\n All flights: ")
     for flight in flights:
         print(flight)
+
+def modify_departure_time():
+    flight_id = input("Enter Flight ID: ")
+    new_time = input("New Scheduled Departure Time (HH:MM): ")
+
+    update_scheduled_departure_time(flight_id, new_time)
+    print("Scheduled departure time updated")
+
+def modify_arrival_time():
+    flight_id = input("Enter Flight ID: ")
+    new_time = input("New Scheduled Arrival Time (HH:MM): ")
+
+    update_scheduled_arrival_time(flight_id, new_time)
+    print("Scheduled arrival time updated")
+
+def modify_flight_status():
+    flight_id = input("Enter Flight ID: ")
+    status_id = input("Enter New Flight Status ID: ")
+
+    update_flight_status(flight_id, status_id)
+    print("Flight status updated")
+
+
+def modify_full_schedule():
+    flight_id = input("Enter Flight ID: ")
+    dep_time = input("New Departure Time (HH:MM): ")
+    arr_time = input("New Arrival Time (HH:MM): ")
+
+    update_schedule(flight_id, dep_time, arr_time)
+    print("Flight schedule updated")
+

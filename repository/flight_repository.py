@@ -109,3 +109,63 @@ def view_all_flights():
     conn.close()
 
     return rows
+
+def update_scheduled_departure_time(flight_id, new_time):
+
+    conn = get_connection()
+    cur = conn.cursor()
+
+    cur.execute("""
+        UPDATE Flight
+        SET ScheduledDepartureTime = ?
+        WHERE FlightId = ?
+    """, (new_time, flight_id))
+
+    conn.commit()
+    conn.close()
+
+
+def update_scheduled_arrival_time(flight_id, new_time):
+
+    conn = get_connection()
+    cur = conn.cursor()
+
+    cur.execute("""
+        UPDATE Flight
+        SET ScheduledArrivalTime = ?
+        WHERE FlightId = ?
+    """, (new_time, flight_id))
+
+    conn.commit()
+    conn.close()
+
+def update_flight_status(flight_id, status_id):
+
+    conn = get_connection()
+    cur = conn.cursor()
+
+    cur.execute("""
+        UPDATE Flight
+        SET FlightStatusId = ?
+        WHERE FlightId = ?
+    """, (status_id, flight_id))
+
+    conn.commit()
+    conn.close()
+
+def update_schedule(flight_id, dep_time, arr_time):
+
+    conn = get_connection()
+    cur = conn.cursor()
+
+    cur.execute("""
+        UPDATE Flight
+        SET ScheduledDepartureTime = ?,
+            ScheduledArrivalTime = ?
+        WHERE FlightId = ?
+    """, (dep_time, arr_time, flight_id))
+
+    conn.commit()
+    conn.close()
+
+

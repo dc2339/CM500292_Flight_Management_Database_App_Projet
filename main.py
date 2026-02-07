@@ -76,6 +76,39 @@ def flight_view_menu():
             print("Invalid option, please try again.")
 
 
+def flight_schedule_menu():
+    while True:
+        print("\n FLIGHT SCHEDULE MODIFICATION")
+        print("1. Modify Scheduled Departure Time")
+        print("2. Modify Scheduled Arrival Time")
+        print("3. Modify Flight Status")
+        print("4. Modify Full Schedule (Departure & Arrival)")
+        print("5. Back to Main Menu")
+
+        choice = input("Select an option: ")
+
+        if choice == "1":
+            modify_departure_time()
+
+        elif choice == "2":
+            modify_arrival_time()
+
+        elif choice == "3":
+            modify_flight_status()
+
+        elif choice == "4":
+            modify_full_schedule()
+
+        elif choice == "5":
+            break
+
+        else:
+            print("Invalid option, please try again.")
+
+
+
+
+
 
 def main():
 
@@ -88,6 +121,7 @@ def main():
         print("\n MAIN MENU")
         print("Press 1 to add a new flight")
         print("Press 2 to view Flight by criteria")
+        print("Press 3 to modify the schedule for a flight")
         print("Press 6 to View/Update Destination Information")
         print("Press 10 for the pilot managemnt")
         print("Press 7 to exit")
@@ -100,6 +134,9 @@ def main():
 
         if(choice == "2"):
            flight_view_menu()
+
+        if(choice =="3"):
+            flight_schedule_menu()
 
         if(choice == "10"):
            print("\n PILOT MANAGEMENT")
