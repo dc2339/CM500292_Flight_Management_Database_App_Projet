@@ -3,6 +3,7 @@ from controller.pilot_controller import add_pilot, view_all_pilots
 from controller.destination_controller import * 
 from controller.flight_controller import *
 from insert_data import insert_data, reset_database
+from controller.flight_pilot_controller import assign_pilot
 
 def destination_menu():
     while True:
@@ -106,8 +107,22 @@ def flight_schedule_menu():
             print("Invalid option, please try again.")
 
 
+def flight_assignment_menu():
+    while True:
+        print("\n FLIGHT CREW ASSIGNMENT")
+        print("1. Assign Pilot to Flight")
+        print("2. Back to Main Menu")
 
+        choice = input("Select an option: ")
 
+        if choice == "1":
+            assign_pilot()
+
+        elif choice == "2":
+            break
+
+        else:
+            print("Invalid option, please try again.")
 
 
 def main():
@@ -122,6 +137,7 @@ def main():
         print("Press 1 to add a new flight")
         print("Press 2 to view Flight by criteria")
         print("Press 3 to modify the schedule for a flight")
+        print("Press 4 to assign Pilot to Flight")
         print("Press 6 to View/Update Destination Information")
         print("Press 10 for the pilot managemnt")
         print("Press 7 to exit")
@@ -137,6 +153,9 @@ def main():
 
         if(choice =="3"):
             flight_schedule_menu()
+
+        if(choice == "4"):
+            flight_assignment_menu()
 
         if(choice == "10"):
            print("\n PILOT MANAGEMENT")
