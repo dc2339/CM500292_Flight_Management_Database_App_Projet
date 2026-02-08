@@ -97,34 +97,57 @@ def view_all_flight():
     
 
 def modify_departure_time():
-    flight_id = input("Enter Flight ID: ")
-    new_time = input("New Scheduled Departure Time (HH:MM): ")
+    print("\n--- Modify Scheduled Departure Time ---")
 
-    update_scheduled_departure_time(flight_id, new_time)
-    print("Scheduled departure time updated")
+    flight_id = get_int("Enter Flight ID: ")
+    new_time = get_time("New Scheduled Departure Time (HH:MM): ")
+
+    try:
+        update_scheduled_departure_time(flight_id, new_time)
+        print("Scheduled departure time updated.\n")
+    except Exception as e:
+        print("Failed to update:", e)
+
+
 
 def modify_arrival_time():
-    flight_id = input("Enter Flight ID: ")
-    new_time = input("New Scheduled Arrival Time (HH:MM): ")
+    print("\n--- Modify Scheduled Arrival Time ---")
 
-    update_scheduled_arrival_time(flight_id, new_time)
-    print("Scheduled arrival time updated")
+    flight_id = get_int("Enter Flight ID: ")
+    new_time = get_time("New Scheduled Arrival Time (HH:MM): ")
+
+    try:
+        update_scheduled_arrival_time(flight_id, new_time)
+        print("Scheduled arrival time updated.\n")
+    except Exception as e:
+        print("Failed to update:", e)
+
+
 
 def modify_flight_status():
-    flight_id = input("Enter Flight ID: ")
-    status_id = input("Enter New Flight Status ID: ")
+    print("\n--- Modify Flight Status ---")
 
-    update_flight_status(flight_id, status_id)
-    print("Flight status updated")
+    flight_id = get_int("Enter Flight ID: ")
+    status_id = get_int("Enter New Flight Status ID: ")
 
+    try:
+        update_flight_status(flight_id, status_id)
+        print("Flight status updated.\n")
+    except Exception as e:
+        print("Failed to update:", e)
 
 def modify_full_schedule():
-    flight_id = input("Enter Flight ID: ")
-    dep_time = input("New Departure Time (HH:MM): ")
-    arr_time = input("New Arrival Time (HH:MM): ")
+    print("\n--- Modify Full Schedule ---")
 
-    update_schedule(flight_id, dep_time, arr_time)
-    print("Flight schedule updated")
+    flight_id = get_int("Enter Flight ID: ")
+    dep_time = get_time("New Departure Time (HH:MM): ")
+    arr_time = get_time("New Arrival Time (HH:MM): ")
+
+    try:
+        update_schedule(flight_id, dep_time, arr_time)
+        print("Flight schedule updated.\n")
+    except Exception as e:
+        print("Failed to update:", e)
 
 
 def print_flights(rows):
