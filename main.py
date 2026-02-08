@@ -126,6 +126,28 @@ def flight_assignment_menu():
             print("Invalid option, please try again.")
 
 
+def pilot_menu():
+    while True:
+        print("\n PILOT MANAGEMENT")
+        print("1. Add new Pilot")
+        print("2. View all Pilots")
+        print("3. Back to Main Menu")
+
+        choice = input("Select an option: ")
+
+        if choice == "1":
+            add_pilot()
+
+        elif choice == "2":
+            view_all_pilots()
+
+        elif choice == "3":
+            break
+
+        else:
+            print("Invalid option, please try again.")
+
+
 def main():
 
     reset_database()
@@ -133,16 +155,16 @@ def main():
     insert_lookup_tables()
     insert_data()
 
-    while True: 
+    while True:
         print("\n MAIN MENU")
-        print("Press 1 to add a new flight")
-        print("Press 2 to view Flight by criteria")
-        print("Press 3 to modify the schedule for a flight")
-        print("Press 4 to assign Pilot to Flight")
-        print("Press 5 to View Pilot Schedule")
-        print("Press 6 to View/Update Destination Information")
-        print("Press 10 for the pilot managemnt")
-        print("Press 7 to exit")
+        print("1. Add a new flight")
+        print("2. View flights")
+        print("3. Modify flight schedule")
+        print("4. Assign pilot to flight")
+        print("5. View pilot schedule")
+        print("6. Destination management")
+        print("7. Pilot management")
+        print("8. Exit")
 
         choice = input("Select an option: ")
 
@@ -161,27 +183,18 @@ def main():
         elif choice == "5":
             show_pilot_schedule()
 
-        elif choice == "10":
-            print("\n PILOT MANAGEMENT")
-            print("1. Add new Pilot")
-            print("2. View all Pilots")
-            sub_choice = input("Select an option: ")
-
-            if sub_choice == "1":
-                add_pilot()
-            elif sub_choice == "2":
-                view_all_pilots()
-
         elif choice == "6":
             destination_menu()
 
         elif choice == "7":
-            print("Exiting the application ...")
+            pilot_menu()
+
+        elif choice == "8":
+            print("Exiting the application...")
             break
 
         else:
             print("Invalid option, please try again.")
-
 
 if __name__ == "__main__":
     main()
