@@ -95,6 +95,10 @@ def insert_data():
     conn.close()
 
 
+
+'''
+use for clean testing
+'''
 def reset_database():
 
     conn = get_connection()

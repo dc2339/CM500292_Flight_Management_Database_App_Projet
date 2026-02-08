@@ -175,7 +175,7 @@ def statistics_menu():
 
 def main():
 
-    reset_database()
+    #reset_database()
     init_database()
     insert_lookup_tables()
     insert_data()
