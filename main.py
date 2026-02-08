@@ -5,6 +5,7 @@ from controller.flight_controller import *
 from insert_data import insert_data, reset_database
 from controller.flight_pilot_controller import assign_pilot
 from controller.pilot_schedule_controller import show_pilot_schedule
+from controller.statistics_controller import show_departures_per_destination, show_flights_per_pilot, show_arrivals_per_destination
 
 def destination_menu():
     while True:
@@ -147,6 +148,30 @@ def pilot_menu():
         else:
             print("Invalid option, please try again.")
 
+def statistics_menu():
+    while True:
+        print("\n FLIGHT STATISTICS")
+        print("1. Flights ARRIVING per destination")
+        print("2. Flights DEPARTING per destination")
+        print("3. Flights per pilot")
+        print("4. Back to Main Menu")
+
+        choice = input("Select an option: ")
+
+        if choice == "1":
+            show_arrivals_per_destination()
+
+        elif choice == "2":
+            show_departures_per_destination()
+
+        elif choice == "3":
+            show_flights_per_pilot()
+
+        elif choice == "4":
+            break
+
+        else:
+            print("Invalid option.")
 
 def main():
 
@@ -164,6 +189,7 @@ def main():
         print("5. View pilot schedule")
         print("6. Destination management")
         print("7. Pilot management")
+        print("8. Statistic visualization")
         print("8. Exit")
 
         choice = input("Select an option: ")
@@ -190,8 +216,11 @@ def main():
             pilot_menu()
 
         elif choice == "8":
-            print("Exiting the application...")
-            break
+            statistics_menu()
+
+        elif choice == "9":
+            print("Exiting...")
+            break   
 
         else:
             print("Invalid option, please try again.")
