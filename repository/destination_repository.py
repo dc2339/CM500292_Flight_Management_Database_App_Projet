@@ -1,87 +1,105 @@
 from database_connection import get_connection
 
-def insert_destination(destination): 
+def insert_destination(destination):
+    try:
+        conn = get_connection()
+        cur = conn.cursor()
 
-    conn = get_connection()
-    cur = conn.cursor()
+        cur.execute("""
+            INSERT INTO Destination (City, Country, AirportCode)
+            VALUES (?, ?, ?)
+        """, (destination.city, destination.country, destination.airport_code))
 
-    cur.execute("""
+        conn.commit()
+        print("Destination inserted successfully.")
 
-    INSERT INTO Destination(
-                City, Country, AirportCode
+    except Exception as e:
+        print("Database error while inserting destination:", e)
 
-                ) VALUES (?, ?, ?)
-
-    """, (destination.city, destination.country, destination.airport_code)
-    )
-
-    conn.commit()
-    conn.close()
+    finally:
+        conn.close()
 
 
 def update_country_destination_by_destination_id(destination_id, new_country):
+    try:
+        conn = get_connection()
+        cur = conn.cursor()
 
-    conn = get_connection()
-    cur = conn.cursor()
+        cur.execute("""
+            UPDATE Destination
+            SET Country = ?
+            WHERE DestinationId = ?
+        """, (new_country, destination_id))
 
-    cur.execute("""
-                
-                UPDATE Destination 
-                SET Country = ? 
-                WHERE DestinationId = ?
-                
-                """, (new_country, destination_id)
-    )
+        conn.commit()
+        print("Country updated.")
 
-    conn.commit()
-    conn.close()
+    except Exception as e:
+        print("Database error while updating country:", e)
+
+    finally:
+        conn.close()
+
+
 
 def update_city_destination_by_destination_id(destination_id, new_city):
+    try:
+        conn = get_connection()
+        cur = conn.cursor()
 
-    conn = get_connection()
-    cur = conn.cursor()
+        cur.execute("""
+            UPDATE Destination
+            SET City = ?
+            WHERE DestinationId = ?
+        """, (new_city, destination_id))
 
-    cur.execute("""
-                
-                UPDATE Destination 
-                SET City = ? 
-                WHERE DestinationId = ?
-                
-                """, (new_city, destination_id)
-    )
+        conn.commit()
+        print("City updated.")
 
-    conn.commit()
-    conn.close()
+    except Exception as e:
+        print("Database error while updating city:", e)
+
+    finally:
+        conn.close()
+
 
 
 def update_airport_code_destination_by_destination_id(destination_id, new_airport_code):
+    try:
+        conn = get_connection()
+        cur = conn.cursor()
 
-    conn = get_connection()
-    cur = conn.cursor()
+        cur.execute("""
+            UPDATE Destination
+            SET AirportCode = ?
+            WHERE DestinationId = ?
+        """, (new_airport_code, destination_id))
 
-    cur.execute("""
-                
-                UPDATE Destination 
-                SET AirportCode = ? 
-                WHERE DestinationId = ?
-                
-                """, (new_airport_code, destination_id)
-    )
+        conn.commit()
+        print("Airport code updated.")
 
-    conn.commit()
-    conn.close()
+    except Exception as e:
+        print("Database error while updating airport code:", e)
+
+    finally:
+        conn.close()
 
 def select_all_destination():
+    try:
+        conn = get_connection()
+        cur = conn.cursor()
 
-    conn = get_connection()
-    cur = conn.cursor()
+        cur.execute("""
+            SELECT DestinationId, City, Country, AirportCode
+            FROM Destination
+        """)
 
-    cur.execute("SELECT * FROM Destination")
+        rows = cur.fetchall()
+        return rows
 
-    rows = cur.fetchall()
-    conn.close
+    except Exception as e:
+        print("Database error while fetching destinations:", e)
+        return []
 
-    return rows
-
-
-
+    finally:
+        conn.close()
