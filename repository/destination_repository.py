@@ -103,3 +103,23 @@ def select_all_destination():
 
     finally:
         conn.close()
+
+
+def delete_destination(destination_id):
+    try:
+        conn = get_connection()
+        cur = conn.cursor()
+
+        cur.execute("""
+            DELETE FROM Destination
+            WHERE DestinationId = ?
+        """, (destination_id,))
+
+        conn.commit()
+        print("Destination deleted successfully.")
+
+    except Exception as e:
+        print("Database error while deleting destination:", e)
+
+    finally:
+        conn.close()

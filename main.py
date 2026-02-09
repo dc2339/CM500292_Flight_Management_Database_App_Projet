@@ -1,5 +1,5 @@
 from db_init import init_database, insert_lookup_tables
-from controller.pilot_controller import add_pilot, view_all_pilots
+from controller.pilot_controller import add_pilot, view_all_pilots, delete_pilot_controller
 from controller.destination_controller import * 
 from controller.flight_controller import *
 from insert_data import insert_data, reset_database
@@ -15,7 +15,8 @@ def destination_menu():
         print("3. Update Destination City")
         print("4. Update Destination Country")
         print("5. Update Destination Airport Code")
-        print("6. Back to Main Menu")
+        print("6. Update Destination Airport Code")
+        print("7. Back to Main Menu")
 
         choice = input("Select an option: ")
 
@@ -35,8 +36,10 @@ def destination_menu():
             update_destination_airport_code()
 
         elif choice == "6":
-            break
+            delete_destination_controller()
 
+        elif choice == "7":
+            break
         else:
             print("Invalid option, please try again.")
 
@@ -132,7 +135,8 @@ def pilot_menu():
         print("\n PILOT MANAGEMENT")
         print("1. Add new Pilot")
         print("2. View all Pilots")
-        print("3. Back to Main Menu")
+        print("3. Delete Pilot")
+        print("4. Back to Main Menu")
 
         choice = input("Select an option: ")
 
@@ -141,8 +145,11 @@ def pilot_menu():
 
         elif choice == "2":
             view_all_pilots()
-
+        
         elif choice == "3":
+            delete_pilot_controller()
+
+        elif choice == "4":
             break
 
         else:

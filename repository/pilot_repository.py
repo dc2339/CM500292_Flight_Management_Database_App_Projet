@@ -60,3 +60,22 @@ def select_all_pilots():
 
     finally:
         conn.close()
+
+def delete_pilot(pilot_id):
+    try:
+        conn = get_connection()
+        cur = conn.cursor()
+
+        cur.execute("""
+            DELETE FROM Pilot
+            WHERE PilotId = ?
+        """, (pilot_id,))
+
+        conn.commit()
+        print("Pilot deleted successfully.")
+
+    except Exception as e:
+        print("Database error while deleting pilot:", e)
+
+    finally:
+        conn.close()

@@ -1,5 +1,5 @@
 from model.pilot import Pilot
-from repository.pilot_repository import insert_pilot, select_all_pilots
+from repository.pilot_repository import insert_pilot, select_all_pilots, delete_pilot
 from helper_validator import get_non_empty, get_int
 
 
@@ -72,3 +72,8 @@ def print_pilots(rows):
         )
 
     print("=" * len(header) + "\n")
+
+def delete_pilot_controller():
+    print("\n--- Delete Pilot ---")
+    pilot_id = get_int("Enter Pilot ID to delete: ")
+    delete_pilot(pilot_id)

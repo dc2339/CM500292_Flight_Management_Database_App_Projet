@@ -1,5 +1,5 @@
 from model.destination import Destination
-from repository.destination_repository import (insert_destination, select_all_destination, update_city_destination_by_destination_id, update_country_destination_by_destination_id,update_airport_code_destination_by_destination_id)
+from repository.destination_repository import insert_destination, select_all_destination, update_city_destination_by_destination_id, update_country_destination_by_destination_id,update_airport_code_destination_by_destination_id, delete_destination
 from helper_validator import get_non_empty, get_int
 
 def get_airport_code(prompt):
@@ -81,3 +81,14 @@ def print_destinations(rows):
         print(f"{r[0]:<4} {r[1]:<15} {r[2]:<15} {r[3]:<6}")
 
     print("=" * len(header) + "\n")
+
+
+def delete_destination_controller():
+    print("\n--- Delete Destination ---")
+
+    did = get_int("Destination ID to delete: ")
+
+    try:
+        delete_destination(did)
+    except Exception as e:
+        print("Failed to delete destination:", e)
